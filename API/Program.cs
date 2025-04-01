@@ -13,6 +13,8 @@ public class Program
 
         // Add services to the container(dependency injection container(DI)).
         builder.Services.AddScoped<IProductRepository, ProductRepository>();
+        //Setup for generic repository
+        builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         builder.Services.AddControllers();
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
