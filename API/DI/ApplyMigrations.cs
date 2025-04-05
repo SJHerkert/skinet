@@ -10,10 +10,7 @@ public class ApplyMigrations
 {
     
     public static async Task MigrateDatabaseAsync(WebApplication app)
-    {       
-
-        
-
+    {    
         using var scope = app.Services.CreateScope();
         var services = scope.ServiceProvider;
         
@@ -31,8 +28,5 @@ public class ApplyMigrations
             logger.LogError(ex, "Migration failed in {Environment}. Exception: {ExceptionMessage}", app.Environment.EnvironmentName, ex.Message);
             Environment.Exit(1); // Exits the application if migrations fail critically
         }
-
     }
-
-
 }

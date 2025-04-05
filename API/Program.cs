@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Infrastructure.Data;
-using Core.Interfaces;
 using API.DI;
 using API.Helpers;
+using API.Middleware;
+using API.Extensions;
 
 public class Program
 {
@@ -12,16 +13,14 @@ public class Program
 
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container(dependency injection container(DI)).
-        builder.Services.AddScoped<IProductRepository, ProductRepository>();
-        //Setup for generic repository
-        builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
         builder.Services.AddControllers();
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
-
         builder.Services.AddDbContext<StoreContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+        builder.Services.AddApplicationServices();
+        builder.Services.AddSwaggerDocumentation();
 
         // Add logging
         builder.Logging.ClearProviders();
@@ -33,20 +32,25 @@ public class Program
         // Apply migrations after app is built
         await ApplyMigrations.MigrateDatabaseAsync(app);
 
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
-            app.MapOpenApi();
-        }
+        app.UseMiddleware<ExceptionMiddleware>();
+
+        // // Configure the HTTP request pipeline.
+        // if (app.Environment.IsDevelopment())
+        // {
+        //     app.MapOpenApi();
+        // }
+
+        app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
         app.UseHttpsRedirection();
 
-                app.UseStaticFiles();
+        app.UseStaticFiles();
 
         app.UseAuthorization();
 
-        app.MapControllers();
+        app.UseSwaggerDocumentation();
 
+        app.MapControllers();
 
 
         await app.RunAsync();
