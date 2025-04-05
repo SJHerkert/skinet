@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Infrastructure.Data;
 using Core.Interfaces;
 using API.DI;
+using API.Helpers;
 
 public class Program
 {
@@ -15,6 +16,7 @@ public class Program
         builder.Services.AddScoped<IProductRepository, ProductRepository>();
         //Setup for generic repository
         builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+        builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
         builder.Services.AddControllers();
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
@@ -39,9 +41,13 @@ public class Program
 
         app.UseHttpsRedirection();
 
+                app.UseStaticFiles();
+
         app.UseAuthorization();
 
         app.MapControllers();
+
+
 
         await app.RunAsync();
 
