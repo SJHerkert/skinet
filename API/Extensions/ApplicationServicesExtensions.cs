@@ -21,8 +21,8 @@ public static class ApplicationServicesExtensions
             options.InvalidModelStateResponseFactory = ActionContext => 
             {
                 var errors = ActionContext.ModelState
-                    .Where(e => e.Value.Errors.Count > 0)//Dictionary type of object
-                    .SelectMany(x => x.Value.Errors)
+                    .Where(e => e.Value!.Errors.Count > 0)//Dictionary type of object
+                    .SelectMany(x => x.Value!.Errors)
                     .Select(x => x.ErrorMessage)
                     .ToArray();
 
