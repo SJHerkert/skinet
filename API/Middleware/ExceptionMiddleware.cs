@@ -11,7 +11,6 @@ public class ExceptionMiddleware
     private readonly RequestDelegate next;
     private readonly ILogger<ExceptionMiddleware> logger;
     private readonly IHostEnvironment env;
-
     public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger, IHostEnvironment env)
     {
         this.next = next;

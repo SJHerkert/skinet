@@ -17,7 +17,7 @@ public class StoreContextSeed
 
                 var brands = JsonSerializer.Deserialize<List<ProductBrand>>(brandsData);
 
-                foreach (var item in brands)
+                foreach (var item in brands!)
                 {
                     context.ProductBrands.Add(item);
                 }
@@ -31,7 +31,7 @@ public class StoreContextSeed
 
                 var types = JsonSerializer.Deserialize<List<ProductType>>(typesData);
 
-                foreach (var item in types)
+                foreach (var item in types!)
                 {
                     context.ProductTypes.Add(item);
                 }
@@ -46,7 +46,7 @@ public class StoreContextSeed
 
                 var products = JsonSerializer.Deserialize<List<Product>>(productsData);
 
-                foreach (var item in products)
+                foreach (var item in products!)
                 {
                     context.Products.Add(item);
                 }

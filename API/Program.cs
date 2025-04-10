@@ -32,13 +32,9 @@ public class Program
         // Apply migrations after app is built
         await ApplyMigrations.MigrateDatabaseAsync(app);
 
+        // Configure the HTTP request pipeline.
         app.UseMiddleware<ExceptionMiddleware>();
-
-        // // Configure the HTTP request pipeline.
-        // if (app.Environment.IsDevelopment())
-        // {
-        //     app.MapOpenApi();
-        // }
+        
 
         app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
