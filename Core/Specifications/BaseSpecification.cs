@@ -7,6 +7,7 @@ public class BaseSpecification<T> : ISpecification<T>
 {
     public BaseSpecification()
     {
+        
     }
 
     public BaseSpecification(Expression<Func<T, bool>> criteria)
@@ -14,13 +15,13 @@ public class BaseSpecification<T> : ISpecification<T>
         Criteria = criteria;
     }
 
-    public Expression<Func<T, bool>> Criteria {get;}
+    public Expression<Func<T, bool>> Criteria {get;} = x => true;
     public List<Expression<Func<T, object>>> Includes {get;} =
         new List<Expression<Func<T, object>>>();
 
-    public Expression<Func<T, object>> OrderBy {get; private set;}
+    public Expression<Func<T, object>> OrderBy {get; private set;} =null!;
     
-    public Expression<Func<T, object>> OrderByDescending {get; private set;}
+    public Expression<Func<T, object>> OrderByDescending {get; private set;} = null!;
 
     public int Take {get; private set;}
 
