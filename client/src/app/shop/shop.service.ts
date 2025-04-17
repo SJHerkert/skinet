@@ -15,12 +15,16 @@ export class ShopService {
   baseUrl = 'https://localhost:5079/api/';
   pagination?: IPagination<IProduct[]>;
   shopParams = new ShopParams();
+  products: IProduct[] = [];
+  brands: IBrand[] = [];
+  types: IType[] = [];
   
   constructor(private http: HttpClient) { }
 
   getProducts(shopParams: ShopParams): Observable<IPagination<IProduct[]>>{
     let params = new HttpParams();
-
+    params = params.append('search', shopParams.search || "");
+   
     if (shopParams.brandId !== 0) {
       params = params.append('brandId', shopParams.brandId.toString());
     }
@@ -29,9 +33,18 @@ export class ShopService {
       params = params.append('typeId', shopParams.typeId.toString());
     }
 
+    // Always append `search`, even if it's empty
+    if (shopParams.search?.trim()) {
+      params = params.append('search', shopParams.search.trim());
+      console.log('Search parameter appended:', params.toString());
+    }
+
     params = params.append('sort', shopParams.sort);
     params = params.append('pageIndex', shopParams.pageNumber.toString());
-    params = params.append('pageIndex', shopParams.pageSize.toString());
+    params = params.append('pageSize', shopParams.pageSize.toString());
+
+
+
 
     return this.http.get<IPagination<IProduct[]>>(this.baseUrl + 'products', {params})
       .pipe(
@@ -49,4 +62,12 @@ export class ShopService {
   getTypes(){
     return this.http.get<IType[]>(this.baseUrl + 'products/types');
   }
+
+  // setShopParams(params: ShopParams) {
+  //   this.shopParams = params;
+  // }
+
+  // getShopParams() {
+  //   return this.shopParams;
+  // }
 }

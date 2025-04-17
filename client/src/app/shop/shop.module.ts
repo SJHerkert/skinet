@@ -12,8 +12,10 @@ import { ProductItemComponent } from './product-item/product-item.component';
     CommonModule,
     SharedModule,
     ProductItemComponent,
-    ShopComponent
+    ShopComponent,    
   ],
   exports : [ShopComponent]
 })
+
+
 export class ShopModule { }
