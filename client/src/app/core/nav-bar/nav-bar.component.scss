@@ -8,6 +8,23 @@
     color: white;
     text-align: center;
     top: -12px;
-    right: 32px;
- 
+    right: 32px; 
+}
+
+a {
+    text-decoration: none;
+    color: grey;
+
+    &:active {
+        color: orange;
+    }
+
+}
+
+.logo {
+    cursor: pointer;
+
+    &:focus{
+        outline: none;
+    }
 }
