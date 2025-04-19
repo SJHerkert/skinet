@@ -28,12 +28,19 @@ public class BuggyController : BaseApiController
 
     [HttpGet("servererror")]
     public ActionResult GetServerError()
-    {
-        var thing = storeContext.Products.Find(42);
-
-        var thingToReturn = thing?.ToString();
-
-        return Ok();
+    {  //TryCatch Try:If no error then return 200, if error catch and return 500 
+    try
+        {
+            var thing = storeContext.Products.Find(42);
+            // Deliberate error, ignore
+            var thingToReturn = thing.ToString();
+            return StatusCode(200, "This shouldn't be OK, as the error is done on purpose! Check your method!?");
+        }
+        catch 
+        {
+            //Return the error message from Errors/ApiResponse.cs        
+            return StatusCode(500, new ApiResponse(500));
+        }
     }
 
     [HttpGet("badrequest")]
