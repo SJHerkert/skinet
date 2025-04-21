@@ -1,17 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-test-error',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './test-error.component.html',
   styleUrl: './test-error.component.scss'
 })
 export class TestErrorComponent implements OnInit {
   
   baseUrl = environment.apiUrl
+  validationErrors: any;
 
   constructor(private http: HttpClient) {
   }
@@ -48,6 +50,7 @@ export class TestErrorComponent implements OnInit {
       console.log(response);
     }, error => {
       console.log(error);
+      this.validationErrors = error.errors;
     })
   }
 

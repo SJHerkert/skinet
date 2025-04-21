@@ -26,6 +26,24 @@ public class Program
         builder.Logging.ClearProviders();
         builder.Logging.AddConsole();
 
+        //Trying to add Show Stack Trace == true, for my local developement 
+//         builder.Services.AddProblemDetails(options =>
+// {
+//             options.CustomizeProblemDetails = context =>
+//             {
+//                 var hostEnv = context.HttpContext.RequestServices.GetRequiredService<IHostEnvironment>();
+        
+//                 var shouldIncludeStackTrace = hostEnv.IsDevelopment(); // Or customize to check for other environments
+        
+//                 if (context.Exception is null || !shouldIncludeStackTrace)
+//                 {
+//                     return;
+//                 }
+        
+//                 context.ProblemDetails.Detail = context.Exception.StackTrace;
+//             };
+//         });
+
         // Build the application
         var app = builder.Build();
 
@@ -34,22 +52,17 @@ public class Program
 
         // Configure the HTTP request pipeline.
         app.UseMiddleware<ExceptionMiddleware>();
-        
+
+        //This for the stack trace issue
+        // app.UseExceptionHandler();
 
         app.UseStatusCodePagesWithReExecute("/errors/{0}");
-
         app.UseHttpsRedirection();
-
         app.UseStaticFiles();
-
         app.UseCors("CorsPolicy");
-
         app.UseAuthorization();
-
         app.UseSwaggerDocumentation();
-
         app.MapControllers();
-
 
         await app.RunAsync();
 

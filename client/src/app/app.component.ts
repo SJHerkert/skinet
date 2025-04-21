@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CoreModule } from './core/core.module';
+import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
 
 
 //Decorator
@@ -12,11 +13,15 @@ import { CoreModule } from './core/core.module';
 })
 export class AppComponent implements OnInit {
   title = 'SkiNet';
+  toastContainer: ToastContainerDirective | undefined;
 
-  constructor(){}
+  constructor(private toastrService: ToastrService){}
 
   ngOnInit(): void {
-
+    this.toastrService.overlayContainer = this.toastContainer;
+  }
+  onClick() {
+    this.toastrService.success('in div');
 
   }
 }
