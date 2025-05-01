@@ -6,6 +6,7 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@a
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideToastr } from 'ngx-toastr';
+import { LoadingInterceptor } from './core/interceptors/loading.interceptors';
 
 
 export const appConfig: ApplicationConfig = {
@@ -22,5 +23,6 @@ export const appConfig: ApplicationConfig = {
        // DI-based interceptors must be explicitly enabled.
     withInterceptorsFromDi()),
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
   ]
 };

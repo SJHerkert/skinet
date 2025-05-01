@@ -17,9 +17,10 @@ import { SharedModule } from '../shared/shared.module';
   styleUrl: './shop.component.scss'
 })
 export class ShopComponent implements OnInit{
-  @ViewChild('search', {static: true}) searchTerm?: ElementRef;
+  @ViewChild('search', {static: false}) searchTerm?: ElementRef;
   //static refers to the availability of the input, as the input is always available in out template 
   //and doesnt rely on any dynamic activity, we can say that our static is true
+  //After making our search box hidden during loading, we must use false in our static
   products: IProduct[] | undefined;
   brands: IBrand[] | undefined;
   types: IType[] | undefined;

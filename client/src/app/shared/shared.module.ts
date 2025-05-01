@@ -10,11 +10,11 @@ import { PagerComponent } from './components/pager/pager.component';
   imports: [
     CommonModule,
     PagingHeaderComponent,
-    PagerComponent    
+    PagerComponent,         
   ],
   exports: [
     PagingHeaderComponent,
-    PagerComponent
+    PagerComponent,       
   ]
 })
 export class SharedModule { }

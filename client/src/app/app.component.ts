@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner'
 
 
 //Decorator
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CoreModule],
+  imports: [RouterOutlet, CoreModule, NgxSpinnerModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
