@@ -5,6 +5,7 @@ import { NgbCarouselConfig, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap
 	selector: 'app-carousel',
 	imports: [NgbCarouselModule],
 	templateUrl: './carousel.component.html',
+	styleUrl: './carousel.component.scss',
 	providers: [NgbCarouselConfig],
 })
 export class CarouselComponent {
