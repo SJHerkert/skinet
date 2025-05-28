@@ -1,10 +1,10 @@
 
 ---
 
-Download .Net core - depreceated
+Download .NET core - depreceated
 Postman
 Get Git
-Download assets folder from tutorial github page
+Download assets folder from tutorial GitHub page
 Create Folder for project
 
 ---

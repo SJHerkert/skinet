@@ -2,7 +2,7 @@ Overview: Continuation of API basics.
 
 ---
 
-API documentation seems to have changed some in tutorial .net core 3.1 and .net 9. At the start I'm going through the microsoft documentation, just to have a better latest structure in mind before continuing the video series. So, going through API, OpenAPI, Web API with db'ses etc. From the get go we can see that the microsoft documentation on ASP.Net core in .Net 9.0 is very good. It seems to provide good precise code examples, clear writing and straight to the point. With many dive deeper links. Although I must mention, that I think in the doceumentation it's assumed the reader knows a lot as a base to tackle all these subjects. So maybe the documentation suitable best for intermediate programmer?
+API documentation seems to have changed some in tutorial .NET core 3.1 and .NET 9. At the start I'm going through the Microsoft documentation, just to have a better latest structure in mind before continuing the video series. So, going through API, OpenAPI, Web API with db'ses etc. From the get go we can see that the microsoft documentation on ASP.Net core in .Net 9.0 is very good. It seems to provide good precise code examples, clear writing and straight to the point. With many dive deeper links. Although I must mention, that I think in the documentation it's assumed the reader knows a lot as a base to tackle all these subjects. So maybe the documentation suitable best for intermediate programmer?
 
 25.3->
 Configure Db Context Configuration:

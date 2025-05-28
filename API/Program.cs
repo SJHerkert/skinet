@@ -4,6 +4,7 @@ using API.DI;
 using API.Helpers;
 using API.Middleware;
 using API.Extensions;
+using StackExchange.Redis;
 
 public class Program
 {
@@ -18,6 +19,13 @@ public class Program
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
         builder.Services.AddDbContext<StoreContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+        builder.Services.AddSingleton<ConnectionMultiplexer>(c =>
+        {
+            var configuration = ConfigurationOptions.Parse(builder.Configuration.GetConnectionString("Redis"),
+            true);
+            return ConnectionMultiplexer.Connect(configuration);
+        });
 
         builder.Services.AddApplicationServices();
         builder.Services.AddSwaggerDocumentation();
